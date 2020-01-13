@@ -1,0 +1,2 @@
+ALTER TABLE t_calendar ADD COLUMN vacation_users CHARACTER VARYING(4000);
+ALTER TABLE t_calendar ADD COLUMN vacation_groups CHARACTER VARYING(4000);

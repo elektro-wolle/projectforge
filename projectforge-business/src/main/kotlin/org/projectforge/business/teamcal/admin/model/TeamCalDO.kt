@@ -75,7 +75,17 @@ open class TeamCalDO() : BaseUserGroupRightsDO() {
     @get:Column(length = Constants.LENGTH_TEXT)
     open var description: String? = null
 
-    @PropertyInfo(i18nKey = "plugins.teamcal.externalsubscription.url")
+    @PropertyInfo(i18nKey = "plugins.teamcal.description")
+    @Field
+    @get:Column(name="vacation_groups", length = Constants.LENGTH_TEXT)
+    open var vacationGroups: String? = null
+
+    @PropertyInfo(i18nKey = "plugins.teamcal.description")
+    @Field
+    @get:Column(name="vacation_users", length = Constants.LENGTH_TEXT)
+    open var vacationUsers: String? = null
+
+    @PropertyInfo(i18nKey = "plugins.teamcal.externalsubscription.url", additionalI18nKey = "plugins.teamcal.externalsubscription.label.tooltip")
     @get:Column(name = "ext_subscription", nullable = false, columnDefinition = "BOOLEAN DEFAULT 'false'")
     open var externalSubscription: Boolean = false
 

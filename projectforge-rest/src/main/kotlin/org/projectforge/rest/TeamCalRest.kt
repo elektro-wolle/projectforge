@@ -117,14 +117,17 @@ class TeamCalRest : AbstractDTORest<TeamCalDO, TeamCal, TeamCalDao>(TeamCalDao::
                                 .add(lc, "title")
                                 .add(lc, "description"))
                         .add(UICol()
-                                .add(lc, "owner")))
+                                .add(lc, "owner")
+                                .add(UICustomized("calendar.subscription"))
+                                .add(lc, "externalSubscription")))
                 .add(UIRow()
                         .add(UICol()
-                                .add(UISelect("fullAccessUsers", lc,
+                                .add(UISelect<Int>("fullAccessUsers", lc,
                                         multi = true,
                                         label = "plugins.teamcal.fullAccess",
                                         additionalLabel = "access.users",
-                                        values = allUsers,
+                                        autoCompletion = AutoCompletion<Int>(url = "user/${AutoCompletion.AUTOCOMPLETE_OBJECT}?search=",
+                                                type = AutoCompletion.Type.USER.name),
                                         labelProperty = "fullname",
                                         valueProperty = "id"))
                                 .add(UISelect("readonlyAccessUsers", lc,
@@ -142,11 +145,12 @@ class TeamCalRest : AbstractDTORest<TeamCalDO, TeamCal, TeamCalDao>(TeamCalDao::
                                         labelProperty = "fullname",
                                         valueProperty = "id")))
                         .add(UICol()
-                                .add(UISelect("fullAccessGroups", lc,
+                                .add(UISelect<Int>("fullAccessGroups", lc,
                                         multi = true,
                                         label = "plugins.teamcal.fullAccess",
                                         additionalLabel = "access.groups",
-                                        values = allGroups,
+                                        autoCompletion = AutoCompletion<Int>(url = "group/${AutoCompletion.AUTOCOMPLETE_OBJECT}?search=",
+                                                type = AutoCompletion.Type.GROUP.name),
                                         labelProperty = "name",
                                         valueProperty = "id"))
                                 .add(UISelect("readonlyAccessGroups", lc,
